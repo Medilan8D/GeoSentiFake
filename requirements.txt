@@ -1,0 +1,69 @@
+# ══════════════════════════════════════════════════════════════════════════════
+# GeoSentiFake — requirements.txt
+# "Quantifying Emotional Skew: Fake News Detection & Sentiment Analysis
+#  in Geopolitical Crisis Content"
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# INSTALLATION TIERS
+# ──────────────────
+# Tier 0 (Zero install — pure stdlib):
+#   python geosentiafake.py --demo
+#   Works immediately. Uses heuristic classifiers.
+#
+# Tier 1 (Recommended — full ML pipeline):
+#   pip install -r requirements.txt
+#
+# Tier 2 (Production — GPU + live retrieval):
+#   pip install -r requirements.txt
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+#   Set env vars: SERPAPI_KEY or GOOGLE_CSE_KEY + GOOGLE_CSE_CX
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Core NLP ─────────────────────────────────────────────────────────────────
+transformers>=4.40.0          # BERT, RoBERTa, DeBERTa models
+torch>=2.0.0                  # PyTorch backend (CPU or GPU)
+sentencepiece>=0.1.99         # Tokenizer for DeBERTa / mBERT
+tokenizers>=0.19.0            # Fast tokenizers
+
+# ── Sentence embeddings (for RAG dense retrieval) ────────────────────────────
+sentence-transformers>=2.7.0  # BGE-M3, E5-large embeddings
+
+# ── Vector search ────────────────────────────────────────────────────────────
+faiss-cpu>=1.7.4              # FAISS IVF index (use faiss-gpu for GPU)
+# faiss-gpu>=1.7.4            # GPU alternative
+
+# ── Sparse retrieval (BM25) ──────────────────────────────────────────────────
+rank-bm25>=0.2.2              # BM25 implementation
+
+# ── NLP utilities ────────────────────────────────────────────────────────────
+spacy>=3.7.0                  # NER, tokenisation, lemmatisation
+# After installing spacy, run:
+# python -m spacy download en_core_web_lg   # best for NER
+# python -m spacy download en_core_web_sm   # lightweight alternative
+nltk>=3.8.1                   # Stopwords, tokenisation utilities
+# After installing nltk, run in Python:
+# import nltk; nltk.download('stopwords'); nltk.download('punkt')
+
+# ── Explainability ───────────────────────────────────────────────────────────
+shap>=0.45.0                  # SHAP feature importance
+
+# ── Data handling ─────────────────────────────────────────────────────────────
+pandas>=2.0.0                 # DataFrame operations for batch processing
+numpy>=1.26.0                 # Numerical operations
+scikit-learn>=1.4.0           # TF-IDF, cosine similarity utilities
+
+# ── Live retrieval (optional) ─────────────────────────────────────────────────
+requests>=2.31.0              # HTTP client for RAG web retrieval
+# Set env var: SERPAPI_KEY=your_key  OR  GOOGLE_CSE_KEY=key + GOOGLE_CSE_CX=cx
+
+# ── Visualisation (optional, for notebook mode) ──────────────────────────────
+matplotlib>=3.8.0             # ESS distribution plots
+seaborn>=0.13.0               # Emotion heatmaps
+plotly>=5.18.0                # Interactive ESS timeline charts
+ipywidgets>=8.1.0             # Jupyter widget support
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+tqdm>=4.66.0                  # Progress bars
+colorama>=0.4.6               # Windows colour support
+tabulate>=0.9.0               # Formatted table output
+python-dotenv>=1.0.0          # Load .env files for API keys
