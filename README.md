@@ -1,6 +1,5 @@
 # GeoSentiFake
 
-
 GeoSentiFake measures emotional skew in geopolitical news and combines that signal with fake‑news and stance detection to produce an interpretable credibility verdict. It’s written in plain Python and can run in a lightweight demo mode (no ML models needed) or a full ML mode (transformers, embeddings, vector search, etc.). This README explains what the project does, how to try it quickly, and how the code is organised so you can extend it.
 
 ---
